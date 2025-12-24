@@ -1,0 +1,234 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* =========================
+   Design Tokens (CSS Variables)
+========================= */
+@layer base {
+  :root {
+    /* Colors */
+    --background: 220 15% 5%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 15% 8%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 15% 8%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 187 85% 53%;
+    --primary-foreground: 220 15% 5%;
+
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 187 85% 53%;
+    --accent-foreground: 220 15% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 187 85% 53%;
+
+    --radius: 0.75rem;
+
+    /* Effects */
+    --glow-primary: 0 0 60px hsl(187 85% 53% / 0.15);
+    --glow-primary-strong: 0 0 80px hsl(187 85% 53% / 0.25);
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 15% 5%) 0%, hsl(220 20% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 10%) 0%, hsl(220 15% 6%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(187 85% 53%) 0%, hsl(199 89% 48%) 100%);
+
+    /* Typography */
+    --font-heading: "Sora", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+  }
+
+  /* Dark Mode Overrides */
+  .dark {
+    --background: 220 15% 5%;
+    --foreground: 210 20% 98%;
+    --border: 220 15% 15%;
+    --input: 220 15% 15%;
+    --ring: 187 85% 53%;
+  }
+
+  /* Base Styles */
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* =========================
+   Components
+========================= */
+@layer components {
+  /* Text and Background Utilities */
+  .text-primary { color: hsl(var(--primary)); }
+  .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .bg-primary-foreground { background-color: hsl(var(--primary-foreground)); }
+
+  .text-secondary { color: hsl(var(--secondary)); }
+  .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+  .bg-secondary { background-color: hsl(var(--secondary)); }
+  .bg-secondary-foreground { background-color: hsl(var(--secondary-foreground)); }
+
+  .text-accent { color: hsl(var(--accent)); }
+  .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+  .bg-accent { background-color: hsl(var(--accent)); }
+  .bg-accent-foreground { background-color: hsl(var(--accent-foreground)); }
+
+  .text-muted { color: hsl(var(--muted)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .bg-muted { background-color: hsl(var(--muted)); }
+  .bg-muted-foreground { background-color: hsl(var(--muted-foreground)); }
+
+  .text-destructive { color: hsl(var(--destructive)); }
+  .text-destructive-foreground { color: hsl(var(--destructive-foreground)); }
+  .bg-destructive { background-color: hsl(var(--destructive)); }
+  .bg-destructive-foreground { background-color: hsl(var(--destructive-foreground)); }
+
+  .text-card { color: hsl(var(--card)); }
+  .text-card-foreground { color: hsl(var(--card-foreground)); }
+  .bg-card { background-color: hsl(var(--card)); }
+  .bg-card-foreground { background-color: hsl(var(--card-foreground)); }
+
+  /* Gradients */
+  .text-gradient {
+    background-image: var(--gradient-accent);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .card-gradient { background: var(--gradient-card); }
+  .hero-gradient { background: var(--gradient-hero); }
+  .accent-gradient { background: var(--gradient-accent); }
+
+  /* Glow Effects */
+  .glow-primary { box-shadow: var(--glow-primary); }
+  .glow-primary-strong { box-shadow: var(--glow-primary-strong); }
+
+  /* Border Gradient */
+  .border-gradient { position: relative; }
+  .border-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 0.5rem;
+    background: var(--gradient-accent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+  }
+
+  /* Containers */
+  .section-container {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section-container { padding-inline: 2rem; }
+  }
+
+  /* Navigation Links */
+  .nav-link {
+    position: relative;
+    color: hsl(var(--muted-foreground));
+    transition: color 0.3s ease;
+  }
+  .nav-link:hover { color: hsl(var(--foreground)); }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after { width: 100%; }
+
+  /* Badges */
+  .tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .tech-badge:hover {
+    background-color: hsl(var(--muted));
+    transform: scale(1.05);
+    box-shadow: var(--glow-primary);
+  }
+}
+
+/* =========================
+   Utilities / Animations
+========================= */
+@layer utilities {
+  .animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
+  .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+  .animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
+  .animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+  .animate-logo-spin { animation: logo-spin 20s linear infinite; }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
+
+/* =========================
+   Keyframes
+========================= */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes glowPulse { 0%, 100% { box-shadow: 0 0 40px hsl(187 85% 53% / 0.1); } 50% { box-shadow: 0 0 60px hsl(187 85% 53% / 0.2); } }
+@keyframes logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* =========================
+   Scrollbar
+========================= */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background-color: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background-color: hsl(var(--muted)); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background-color: hsl(var(--muted-foreground) / 0.3); }
