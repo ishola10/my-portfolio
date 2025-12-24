@@ -49,7 +49,7 @@ export function HeroSection() {
                     >
                         Software Engineer{" "}
                         <span className="block text-muted-foreground text-base font-normal mt-2">
-                            (I speak fluent frontend 💻, know some mobile lingo 📱, and backend whispers 👀)
+                            (I speak fluent frontend, know some mobile lingo, and backend whispers)
                         </span>
 
                         <span className="block text-gradient">
