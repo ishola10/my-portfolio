@@ -13,16 +13,8 @@ const projects = [
     liveUrl: "https://one-tap-sos-three.vercel.app/",
     githubUrl: "https://github.com/ishola10/one-tap-sos",
     category: "Web App, Mobile (Comming Soon...)",
+    gradient: "from-cyan-500/20 to-blue-500/20",
   },
-  // {
-  //   id: 1,
-  //   title: "Strengthy",
-  //   description: "A fitness application that helps users track daily activities and provides personalized workout schedules for optimal health management.",
-  //   tech: ["React", "Node.js", "CSS"],
-  //   liveUrl: "https://strengthy.netlify.app/",
-  //   githubUrl: "https://github.com/ishola10/fitness-app",
-  //   gradient: "from-cyan-500/20 to-blue-500/20",
-  // },
   {
     id: 2,
     title: "LinkSwift",
