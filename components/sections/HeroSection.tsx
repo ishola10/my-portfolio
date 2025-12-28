@@ -38,7 +38,7 @@ export function HeroSection() {
                         transition={{ duration: 0.5, delay: 0.05 }}
                         className="text-xl sm:text-2xl text-muted-foreground mb-4"
                     >
-                        Hi, I'm <span className="text-primary font-semibold">Muhammed</span> 👋
+                        Hi, I'm <span className="text-primary font-semibold">Muhammed</span>
                     </motion.p>
 
                     <motion.h1

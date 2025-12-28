@@ -5,6 +5,15 @@ import { ExternalLink, Github } from "lucide-react";
 const allProjects = [
   {
     id: 1,
+    title: "One Tap SOS",
+    description: "A panic-friendly SOS app that allows users to send distress signals to emergency services with just one tap. Features include real-time location sharing, customizable SOS messages, and quick access to emergency contacts.",
+    tech: ["Nuxt.js", "Vue.js", "Tailwind CSS"],
+    liveUrl: "https://one-tap-sos-three.vercel.app/",
+    githubUrl: "https://github.com/ishola10/one-tap-sos",
+    category: "Web App, Mobile (Comming Soon...)",
+  },
+  {
+    id: 2,
     title: "Strengthy",
     description: "A comprehensive fitness application that helps users track daily activities and provides personalized workout schedules for optimal health management. Features include progress tracking, custom workout plans, and activity reminders.",
     tech: ["React", "Node.js", "CSS", "REST API"],
@@ -13,7 +22,7 @@ const allProjects = [
     category: "Web App",
   },
   {
-    id: 2,
+    id: 3,
     title: "LinkSwift",
     description: "An advanced URL shortening application with analytics capabilities. Users can create shortened links with custom aliases, track click statistics, and manage their link collections efficiently.",
     tech: ["Vue.js", "TypeScript", "Firebase", "Axios"],
@@ -22,7 +31,7 @@ const allProjects = [
     category: "Web App",
   },
   {
-    id: 3,
+    id: 4,
     title: "Vacine App",
     description: "A promotional healthcare platform designed to educate users about vaccination benefits and streamline the vaccine registration process. Clean, accessible design focused on clear communication.",
     tech: ["HTML", "CSS", "JavaScript"],
@@ -31,12 +40,12 @@ const allProjects = [
     category: "Website",
   },
   {
-    id: 4,
+    id: 5,
     title: "Portfolio Website",
     description: "A modern, responsive portfolio website showcasing frontend development skills. Built with performance and accessibility in mind, featuring smooth animations and clean design.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "https://badmusmuhammed.netlify.app/",
-    githubUrl: "https://github.com/ishola10",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "https://badmusmuhammed.vercel.app/",
+    githubUrl: "https://github.com/ishola10/my-portfolio",
     category: "Website",
   },
 ];
