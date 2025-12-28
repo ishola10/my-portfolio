@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Code2, Heart, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import JourneyTimeline from "@/components/sections/JourneyTimeline";
+import DashPortrait from "@/components/sections/DashPortrait";
 
 const values = [
     {
@@ -47,10 +48,9 @@ export default function About() {
                                 Badmus Muhammed
                             </h1>
                             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                                I'm a Frontend Developer based in Nigeria with over 2 years of experience
-                                building web applications. I combine technical expertise with a deep
-                                understanding of user experience to create products that people genuinely
-                                enjoy using.
+                                I'm a Frontend Developer based in Nigeria with experience in building web applications, apps and all. I combine technical expertise
+                                with a deep understanding of user experience to create products that
+                                people genuinely enjoy using.
                             </p>
                             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                                 Beyond coding, I'm passionate about physics and enjoy exploring the
@@ -72,15 +72,20 @@ export default function About() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="relative"
                         >
-                            <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-border overflow-hidden">
+                            {/* <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-border overflow-hidden">
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30">
                                         <span className="text-6xl font-heading font-bold text-primary">BM</span>
                                     </div>
+                                    <DashPortrait />
                                 </div>
                                 <div className="absolute top-8 right-8 w-16 h-16 rounded-lg bg-primary/10 animate-float" />
                                 <div className="absolute bottom-8 left-8 w-12 h-12 rounded-full bg-primary/10 animate-float" style={{ animationDelay: "1s" }} />
+                            </div> */}
+                            <div className="aspect-square rounded-2xl bg-[#050b14] border border-border overflow-hidden flex items-center justify-center">
+                                <DashPortrait />
                             </div>
+
                         </motion.div>
                     </div>
                 </div>

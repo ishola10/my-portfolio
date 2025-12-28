@@ -41,8 +41,7 @@ export function AboutSnapshot() {
               <span className="text-gradient">details</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              I'm Badmus Muhammed, a Frontend Developer based in Nigeria with 2+ years 
-              of experience building web applications, apps and all. I combine technical expertise 
+              I'm Badmus Muhammed, a Frontend Developer based in Nigeria with experience in building web applications, apps and all. I combine technical expertise 
               with a deep understanding of user experience to create products that 
               people genuinely enjoy using.
             </p>

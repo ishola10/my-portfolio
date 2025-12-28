@@ -94,7 +94,7 @@ export function HeroSection() {
                         </Button>
                     </motion.div>
 
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
@@ -110,7 +110,7 @@ export function HeroSection() {
                                 <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
                             </div>
                         ))}
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </div>
         </section>
