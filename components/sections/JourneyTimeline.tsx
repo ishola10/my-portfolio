@@ -30,6 +30,18 @@ const experiences = [
     ],
   },
   {
+    id: "fitmall",
+    company: "Fitmall Africa",
+    role: "Frontend Developer",
+    period: "2025 – Present",
+    location: "Rwanda",
+    points: [
+      "Developed responsive and scalable web interfaces for the admin and super admin dashboards of a gym management platform used for attendance tracking, subscriptions, payments, withdrawals, and member management.",
+      "Built reusable frontend components and integrated REST APIs to support dynamic dashboards, authentication-based workflows, and real-time data updates.",
+      "Optimized UI performance, responsiveness, and overall user experience across the web application"
+    ],
+  },
+  {
     id: "build-together",
     company: "Build Together",
     role: "Frontend Developer",
@@ -45,7 +57,7 @@ const experiences = [
     id: "volunteer",
     company: "Find Cura",
     role: "Volunteer Frontend Developer",
-    period: "Ongoing",
+    period: "2025",
     location: "Nigeria",
     points: [
       "Working as a lead frontend dev in building a platform for patients to connect with pharmacies.",
