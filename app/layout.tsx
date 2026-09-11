@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { CustomCursor } from "@/components/ui/CustomCursor";
+import { WorkspaceApp } from "@/components/workspace/WorkspaceApp";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +13,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
-  title: "Badmus Muhammed | Frontend Engineer",
-  description: "Frontend Engineer building scalable, user-focused web applications. Specializing in React, TypeScript, and modern web development.",
+  title: "Muhammed Badmus — Frontend Engineer",
+  description:
+    "Frontend engineer based in Nigeria. Interactive portfolio — browse the repo, search files, or type in the terminal.",
 };
 
 export default function RootLayout({
@@ -28,14 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} font-sans antialiased`}
       >
-        <div className="min-h-screen flex flex-col bg-background cursor-none">
-          <CustomCursor />
-          <Header />
-          <main className="flex-1 pt-24">{children}</main>
-          <Footer />
-        </div>
+        <WorkspaceApp />
+        <div className="hidden">{children}</div>
       </body>
     </html>
   );

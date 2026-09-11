@@ -41,7 +41,7 @@ export default function DashPortrait() {
 
             ctx.clearRect(0, 0, SIZE, SIZE);
 
-            ctx.strokeStyle = "rgba(8, 187, 246, 0.9)";
+            ctx.strokeStyle = "rgba(196, 163, 122, 0.88)";
             ctx.lineCap = "round";
             ctx.lineWidth = 1;
 
@@ -78,7 +78,7 @@ export default function DashPortrait() {
     return (
         <canvas
             ref={canvasRef}
-            className="w-[420px] h-[420px] drop-shadow-[0_0_25px_rgba(8,187,246,0.25)]"
+            className="mx-auto h-auto w-full max-w-[420px]"
         />
 
     );

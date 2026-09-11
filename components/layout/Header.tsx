@@ -1,18 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
+import { navItems, site } from "@/lib/site";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,10 +12,8 @@ export function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,88 +22,83 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
-          : "bg-transparent"
+    <header
+      className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-300 ${
+        isScrolled || isMobileMenuOpen
+          ? "border-b border-border/80 bg-background/85 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       <nav className="section-container">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:border-primary/60 transition-all duration-300">
-              <span className="text-primary font-heading font-bold text-lg">MB</span>
-            </div>
-            <span className="font-heading font-semibold text-foreground hidden sm:block">
-              Muhammed Badmus<span className="text-primary">.</span>
+        <div className="flex h-20 items-center justify-between">
+          <Link href="/" className="group flex items-baseline gap-2">
+            <span className="font-serif text-xl tracking-tight text-foreground">
+              {site.name}
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden items-center gap-10 md:flex">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`nav-link text-sm font-medium ${
-                  pathname === item.href ? "text-foreground active" : ""
+                className={`nav-link flex items-baseline gap-2 text-sm ${
+                  pathname === item.href ? "active" : ""
                 }`}
               >
+                <span className="font-mono text-[10px] tracking-widest text-muted-foreground">
+                  {item.index}
+                </span>
                 {item.label}
               </Link>
             ))}
+            <a
+              href={`mailto:${site.email}`}
+              className="hidden text-sm text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline lg:inline"
+            >
+              {site.email}
+            </a>
           </div>
 
-          <div className="hidden md:block">
-            <Button variant="hero" size="default" asChild>
-              <Link href="/contact">Let's Talk</Link>
-            </Button>
-          </div>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          <button
+            type="button"
+            className="inline-flex size-10 items-center justify-center text-foreground md:hidden"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+            {isMobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border"
-          >
-            <div className="section-container py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`text-lg font-medium transition-colors ${
-                    pathname === item.href
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Button variant="hero" className="mt-4" asChild>
-                <Link href="/contact">Let's Talk</Link>
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      {isMobileMenuOpen ? (
+        <div className="border-t border-border bg-background md:hidden">
+          <div className="section-container flex flex-col gap-1 py-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-baseline gap-3 py-3 text-lg ${
+                  pathname === item.href
+                    ? "text-foreground"
+                    : "text-muted-foreground"
+                }`}
+              >
+                <span className="font-mono text-xs tracking-widest">
+                  {item.index}
+                </span>
+                {item.label}
+              </Link>
+            ))}
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-4 text-sm text-foreground"
+            >
+              {site.email}
+            </a>
+          </div>
+        </div>
+      ) : null}
+    </header>
   );
 }

@@ -1,32 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const experiences = [
   {
     id: "adebayo-llc",
     company: "Adebayo Adeleke LLC",
     role: "Frontend Developer",
-    period: "2024 – Present",
-    location: "USA (Remote)",
+    period: "2024 — Present",
+    location: "USA · Remote",
     points: [
-      "Collaborated in the development and enhancement of user interfaces, optimizing usability and engagement for over 1,000 monthly active users.",
-      "Worked closely with cross-functional teams to implement responsive, accessible, and scalable frontend components.",
-      "Participated in code reviews, improving overall code quality and reducing bugs by approximately 30%."
+      "Shipped and refined production UI used by 1,000+ monthly active users.",
+      "Built responsive, accessible components with cross-functional teams.",
+      "Raised code quality through reviews, cutting recurring bugs by ~30%.",
     ],
   },
   {
     id: "adebayo-intern",
     company: "Adebayo Adeleke LLC",
     role: "Frontend Developer Intern",
-    period: "2023 – 2024",
-    location: "USA (Remote)",
+    period: "2023 — 2024",
+    location: "USA · Remote",
     points: [
-      "Assisted in implementing core UI features for an internal logistics tracking tool.",
-      "Improved data visibility and operational efficiency through intuitive frontend solutions.",
-      "Worked in agile environments including sprint planning and daily stand-ups.",
-      "Integrated REST APIs and managed application state using React and Redux."
+      "Implemented core UI for an internal logistics tracking tool.",
+      "Integrated REST APIs and managed state with React and Redux.",
+      "Worked in sprint planning, stand-ups, and iterative delivery.",
     ],
   },
   {
@@ -36,33 +34,32 @@ const experiences = [
     period: "2023",
     location: "Nigeria",
     points: [
-      "Helped develop a collaboration platform connecting over 500 tech professionals.",
-      "Designed and implemented dashboards and team communication interfaces.",
-      "Implemented authentication flows and update mechanisms to enhance productivity."
+      "Helped ship a collaboration platform for 500+ tech professionals.",
+      "Designed dashboards and team communication surfaces.",
+      "Implemented authentication flows and product update surfaces.",
     ],
   },
   {
     id: "volunteer",
     company: "Find Cura",
-    role: "Volunteer Frontend Developer",
+    role: "Lead Frontend Developer",
     period: "Ongoing",
     location: "Nigeria",
     points: [
-      "Working as a lead frontend dev in building a platform for patients to connect with pharmacies.",
-      "Leading the development of a responsive web application using Next.js and Tailwind CSS.",
-      "Collaborating with backend engineers to design and integrate robust API endpoints for real-time inventory tracking.",
+      "Leading the frontend for a patient–pharmacy connection product.",
+      "Building the web app in Next.js and Tailwind CSS.",
+      "Partnering with backend on inventory APIs and realtime flows.",
     ],
   },
   {
     id: "open-source",
-    company: "Open Source & Community",
-    role: "Volunteer Frontend Contributor",
+    company: "Open Source",
+    role: "Frontend Contributor",
     period: "Ongoing",
-    location: "Global",
+    location: "Remote",
     points: [
-      "Contributed UI improvements and bug fixes to open-source frontend projects.",
-      "Collaborated with developers globally through pull requests and reviews.",
-      "Focused on accessibility, performance, and clean UI patterns."
+      "Contributed UI fixes and reviews across open-source frontend work.",
+      "Focused on accessibility, performance, and maintainable patterns.",
     ],
   },
 ];
@@ -71,59 +68,47 @@ export default function JourneyTimeline() {
   const [active, setActive] = useState(experiences[0]);
 
   return (
-    <div className="grid lg:grid-cols-[1fr_auto_2fr] gap-10 items-start mt-6">
-      <div>
-        {experiences.map((exp) => (
-          <button
-            key={exp.id}
-            onClick={() => setActive(exp)}
-            className={`relative w-full text-left px-4 py-4 border-b transition-colors
-              ${
-                active.id === exp.id
-                  ? "border-primary text-primary"
-                  : "border-border text-foreground hover:text-primary"
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,16rem)_1fr] lg:gap-16">
+      <div className="flex gap-2 overflow-x-auto border-b border-border lg:flex-col lg:overflow-visible lg:border-b-0">
+        {experiences.map((exp) => {
+          const isActive = active.id === exp.id;
+          return (
+            <button
+              key={exp.id}
+              type="button"
+              onClick={() => setActive(exp)}
+              className={`shrink-0 border-b-2 px-1 py-3 text-left text-sm transition-colors lg:border-b-0 lg:border-l-2 lg:px-4 ${
+                isActive
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
               }`}
-          >
-            {active.id === exp.id && (
-              <span className="absolute left-0 top-0 h-full w-[2px] bg-primary" />
-            )}
-            <p className="pl-3 font-medium">{exp.company}</p>
-          </button>
-        ))}
+            >
+              {exp.company}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="hidden lg:block w-px bg-border h-full" />
+      <div key={active.id}>
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+          {active.period} · {active.location}
+        </p>
+        <h3 className="mt-3 font-serif text-2xl tracking-tight text-foreground sm:text-3xl">
+          {active.role}
+        </h3>
+        <p className="mt-1 text-sm text-muted-foreground">{active.company}</p>
 
-      <motion.div
-        key={active.id}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3 }}
-        className="lg:col-span-1 text-left"
-      >
-        <div className="mb-6">
-          <h3 className="font-heading text-2xl font-bold">
-            {active.role}
-          </h3>
-          <p className="text-muted-foreground">
-            {active.company} • {active.location}
-          </p>
-          <p className="text-sm text-muted-foreground mt-1">
-            {active.period}
-          </p>
-        </div>
-
-        <ul className="space-y-4">
-          {active.points.map((point, index) => (
-            <li key={index} className="flex gap-3">
-              <span className="mt-2 h-2 w-2 rounded-full bg-primary" />
-              <p className="text-muted-foreground leading-relaxed">
-                {point}
-              </p>
+        <ul className="mt-8 space-y-3">
+          {active.points.map((point) => (
+            <li
+              key={point}
+              className="border-l border-border pl-4 text-[15px] leading-relaxed text-muted-foreground"
+            >
+              {point}
             </li>
           ))}
         </ul>
-      </motion.div>
+      </div>
     </div>
   );
 }
